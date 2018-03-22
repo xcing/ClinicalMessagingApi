@@ -1,0 +1,33 @@
+<!--<head>-->
+<!--<title>webcomponent</title>-->
+<!--</head>-->
+
+<body onload="sendToken()">
+<script>
+    var isShowChatBox = true;
+
+    function sendToken() {
+        document.getElementById("clinicalMessaging").contentWindow.postMessage("username;0114849", "http://localhost:3005");
+    }
+
+    function toggleChat() {
+        if (isShowChatBox) {
+            document.getElementById("clinicalMessaging").style.display = 'none';
+            isShowChatBox = false;
+        }
+        else {
+            document.getElementById("clinicalMessaging").style.display = 'block';
+            isShowChatBox = true;
+        }
+    }
+</script>
+<div style="z-index:9999;position:fixed;bottom:0px;right:0px;width:350px;max-height:500px;">
+    <div style="height:25px;background-color: cadetblue;text-align: right;">
+        <img src="icon_close.png" style="height:17px;margin-top:4px;margin-right:4px;" onclick="toggleChat()"/>
+    </div>
+    <iframe id="clinicalMessaging" src="http://localhost:3005" frameborder="0" scrolling="no"
+            style="height: 95%; width: 100%;"></iframe>
+</div>
+</body>
+
+
